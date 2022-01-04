@@ -1,4 +1,6 @@
 import {
+  CREATE_SHORT_URL,
+  GET_URL_BY_ID,
   loginElements,
   LOGIN_USER,
   signupElements,
@@ -27,6 +29,36 @@ export const AuthHandler = async (formData: FormData, forLogin: boolean) => {
   }
   
 };
+
+export const createShortUrl = async (url: string, jwtToken: string, userId: number) => {
+
+  try {
+    const results = await fetch(
+      CREATE_SHORT_URL,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          "actualUrl": url,
+          "requestedBy": userId
+      }),
+        headers: {
+          "content-type": "application/json",
+          "Authorization": `Bearer ${jwtToken}`,
+        },
+      }
+    );
+    return results.json();
+  } catch (error) {
+    return { message: "Invalid Details", type: "error", show: true };
+  }
+}
+
+export const getUrlById = async (id: string) => {
+  const response: any = await fetch(GET_URL_BY_ID + id, {
+    method: "GET"
+  });
+  return await response.json();
+}
 
 const GenerateBody = (formData: FormData, forLogin: boolean) => {
   const requests = forLogin ? loginElements : signupElements;

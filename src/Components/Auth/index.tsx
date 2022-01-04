@@ -1,23 +1,34 @@
-import React, {  useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {  useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { defaultToaster } from '../../Constant/DefaultValue';
-import { AuthHandler } from '../../Helpers/ApiHandler';
+import { AuthHandler, getUrlById } from '../../Helpers/ApiHandler';
 import { debounce } from '../../Helpers/Debounce';
-import { jwtToken } from '../../Recoil';
+import { jwtToken, userId } from '../../Recoil';
 import { Toaster } from '../Toaster';
 import './auth.css';
 
 const AuthForm = () => {
 
-    const[forLogin, setForLogin] = useState(true);
-    const[toasterSet, setToaster] = useState(defaultToaster);
-    const[, setJwtToken] = useRecoilState(jwtToken);
+    const [forLogin, setForLogin] = useState(true);
+    const [toasterSet, setToaster] = useState(defaultToaster);
+    const [, setJwtToken] = useRecoilState(jwtToken);
+    const [, setUserId] = useRecoilState(userId);
+    const [params, ] = useSearchParams();
     const navigate = useNavigate();
 
     const resetToast = () => {
         setToaster(defaultToaster);
     }
+
+    useEffect(() => {
+        const id = params.get('id');
+        if (id) {
+            getUrlById(id).then(res => {
+                window.open(res.additionalData.UrlData.actualUrl, '_blank');
+            });
+        }
+    });
 
     const handleAuth = async (e: any) => {
         try {
@@ -27,7 +38,8 @@ const AuthForm = () => {
                 debounce(resetToast, 1000);
             } else {
                 if(forLogin) {
-                    setJwtToken(results.jwt);
+                    setJwtToken(results.additionalData.jwt);
+                    setUserId(results.additionalData.userDetails.id);
                     navigate('/createUrl');
                 }
                 e.target.reset();
