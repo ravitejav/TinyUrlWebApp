@@ -1,0 +1,11 @@
+.toasterCoantienr {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    margin-left: -100px;
+    padding: 1rem;
+    background-color: var(--blue-color);
+    z-index: 9999;
+    color: var(--white-color);
+    border-radius: 1rem;
+}

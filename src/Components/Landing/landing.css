@@ -1,0 +1,61 @@
+.landingContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--red-color);
+}
+.landingContainer h1 {
+    font-size: 3rem;
+    color: rgb(92, 85, 85);
+    font-weight: bold;
+}
+.landingContainer .landingSection {
+    width: 50%;
+}
+.landingContainer .landingSection form  {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.landingContainer .landingSection form input {
+    height: 60px;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    align-self: center;
+    font-size: 1.3rem;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background-color: var(--red-color);
+    margin-bottom: 20px;
+}
+.landingContainer .landingSection form button {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--white-color);
+}
+.landingContainer .landingSection .copyableLink {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #000;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+}
+.landingContainer .landingSection .copyableLink code {
+    color: rgb(68, 65, 65);
+    align-self: center;
+}
+.landingContainer .landingSection .copyableLink button {
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--bg-color);
+    background-color: var(--bg-color);
+    color: var(--white-color);
+}
