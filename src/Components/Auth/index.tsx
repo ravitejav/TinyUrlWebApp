@@ -15,15 +15,11 @@ const AuthForm = () => {
     const[, setJwtToken] = useRecoilState(jwtToken);
     const navigate = useNavigate();
 
-    const handleLogin = () => { 
-        
-    };
-
     const resetToast = () => {
         setToaster(defaultToaster);
     }
 
-    const handleSignUp = async (e: any) => {
+    const handleAuth = async (e: any) => {
         try {
             const results = await AuthHandler(new FormData(e.target), forLogin);
             if(results.type == 'error') {
@@ -50,7 +46,7 @@ const AuthForm = () => {
 
     const handleFormSubmit = (e: any) => {
         e.preventDefault();
-        handleSignUp(e);
+        handleAuth(e);
     }
     
     return (
