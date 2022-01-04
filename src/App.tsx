@@ -8,12 +8,12 @@ const LandingPage = React.lazy(() => import('./Components/Landing'));
 function App() {
   return (
     <Suspense fallback={<Spinner />}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/createUrl" element={<LandingPage />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/createUrl" element={<LandingPage />} />
+        </Routes>
+      </BrowserRouter>
     </Suspense>
   );
 }
